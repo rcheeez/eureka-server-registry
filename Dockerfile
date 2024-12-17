@@ -4,12 +4,12 @@ WORKDIR /app
 
 COPY . /app
 
-RUN mvn clean install
+RUN mvn clean package -DskipTests=true
 
 FROM openjdk:17-jdk-slim
 
-COPY --from=builder /app/target/Eureka-Server-Registry-0.0.1-SNAPSHOT.jar Eureka-Server-Registry-0.0.1-SNAPSHOT.jar
+COPY --from=builder /app/target/Eureka-Server-Registry-0.0.1-SNAPSHOT.jar eureka-server.jar
 
 EXPOSE 8761
 
-CMD [ "java", "-jar", "Eureka-Server-Registry-0.0.1-SNAPSHOT.jar" ]
+CMD [ "java", "-jar", "eureka-server.jar" ]
