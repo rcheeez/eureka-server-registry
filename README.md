@@ -1,6 +1,6 @@
 # Eureka Server - Service Discovery
 
-This repository contains the Eureka Server, which acts as a Service Discovery server for microservices. It enables client microservices to register themselves and discover other services for communication.
+This repository contains the Eureka Server, a Service Discovery server for microservices. It enables client microservices to register and discover other communication services.
 
 ## Features
 - Centralized service registry for microservices.
@@ -20,8 +20,8 @@ This repository contains the Eureka Server, which acts as a Service Discovery se
 ## Running the Server
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-repo/eureka-server.git
-   cd eureka-server
+   git clone [https://github.com/your-repo/eureka-server.git](https://github.com/rcheeez/eureka-server-registry.git)
+   cd eureka-server-registry
    ```
 2. Build and run the application:
    ```bash
@@ -38,13 +38,14 @@ Update the `application.yml` file to customize the server settings:
 ```yaml
 server:
   port: 8761
+spring:
+  application:
+    name: eureka-server
 
 eureka:
   client:
     register-with-eureka: false
     fetch-registry: false
-  server:
-    enable-self-preservation: true
 ```
 
 ## Docker Support
@@ -60,4 +61,3 @@ Build and run the Eureka Server using Docker:
 
 ## License
 This project is licensed under the MIT License.
-```
