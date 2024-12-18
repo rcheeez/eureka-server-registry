@@ -20,7 +20,7 @@ This repository contains the Eureka Server, a Service Discovery server for micro
 ## Running the Server
 1. Clone the repository:
    ```bash
-   git clone [https://github.com/your-repo/eureka-server.git](https://github.com/rcheeez/eureka-server-registry.git)
+   git clone https://github.com/your-repo/eureka-server.git
    cd eureka-server-registry
    ```
 2. Build and run the application:
