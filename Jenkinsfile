@@ -50,11 +50,24 @@ pipeline {
                 sh "mvn package -DskipTests=true"
             }
         }
+        
         stage('Deploy to Nexus') {
             steps {
                 withMaven(globalMavenSettingsConfig: 'global-maven', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
                     sh "mvn deploy -D skipTests=true"
                 }
+            }
+        }
+
+        stage('Docker Build & Tag Image') {
+            steps {
+                sh "docker build -t guravarchies/eureka-server:latest ."
+            }
+        }
+        
+        stage('Trivy Image Scan') {
+            steps {
+                sh "trivy image guravarchies/eureka-server:latest > trivy-report.txt"
             }
         }
     }
