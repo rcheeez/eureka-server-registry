@@ -60,7 +60,7 @@ pipeline {
         
         stage('Docker Build & Tag Image') {
             steps {
-                withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
+                withDockerRegistry(credentialsId: 'docker-creds', url: 'https://index.docker.io/v1/') {
                     sh "docker build -t guravarchies/eureka-server:latest ."
                 }
                 
