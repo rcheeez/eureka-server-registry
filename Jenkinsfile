@@ -50,18 +50,20 @@ pipeline {
                 sh "mvn package -DskipTests=true"
             }
         }
-        
         stage('Deploy to Nexus') {
             steps {
                 withMaven(globalMavenSettingsConfig: 'global-maven', jdk: 'jdk17', maven: 'maven3', mavenSettingsConfig: '', traceability: true) {
-                    sh "mvn deploy -D skipTests=true"
+                    sh "mvn deploy -DskipTests=true"
                 }
             }
         }
-
+        
         stage('Docker Build & Tag Image') {
             steps {
-                sh "docker build -t guravarchies/eureka-server:latest ."
+                withDockerRegistry(credentialsId: 'docker-creds', toolName: 'docker') {
+                    sh "docker build -t guravarchies/eureka-server:latest ."
+                }
+                
             }
         }
         
